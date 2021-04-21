@@ -1,6 +1,6 @@
 # Split HMDB All Metabolites XML
 #### Mr. George L. Malone
-#### 24<sup>th</sup> of March, 2021
+#### 21<sup>st</sup> of April, 2021
 
 
 ### Overview
@@ -32,6 +32,13 @@ concerned about scoping, but it appears to be working properly.
 [n1]\:  I realise it's not generally a good idea to parse XML using regex, but
 this is a line-by-line/within-text operation, rather than a global
 parse/search.
+
+
+### Conversion to Julia
+
+Recently, the operations were transcribed into the Julia programming language,
+as a bit of a thought exercise.  The resulting data are identical, but the time
+to complete operations is much faster.
 
 
 [1]: https://hmdb.ca/downloads
