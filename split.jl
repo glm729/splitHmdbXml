@@ -25,13 +25,12 @@ function xml_text(content::Array{String,1})::String
 end
 
 # Write the data out
-function write_xml(out, dir_out)::Bool
+function write_xml(
+    out::Dict{String,Union{Nothing,String,Array{String,1}}},
+    dir_out::String
+  )::Bool
   local id::String
-  if isnothing(out["id"])
-    id = "IDNA_$(lpad(string(idna), 7, "0"))"
-  else
-    id = out["id"]
-  end
+  id = isnothing(out["id"]) ? "IDNA_$(lpad(string(idna), 7, "0"))" : out["id"]
   open("$dir_out/$(out["id"]).xml", "w") do file
     write(file, xml_text(out["text"]))
   end
@@ -42,10 +41,15 @@ end
 # Operations
 # -----------------------------------------------------------------------------
 
+cd("../hmdb_data/")
+if !isdir("./all_split")
+  mkdir("./all_split")
+end
+
 # Define paths to use
 path = Dict{Symbol,String}(
-  :xml => "../hmdb/hmdb_metabolites.xml",
-  :dir_out => "../hmdb/data/splitjl"
+  :xml => "./hmdb_metabolites.xml",
+  :dir_out => "./all_split"
 )
 
 # DEBUG
